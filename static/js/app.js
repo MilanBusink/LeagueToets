@@ -4,21 +4,8 @@ var FRISBEE = FRISBEE || {};
 
 (function () {
 
-
+	// Waarom al deze objecten als je er niks mee doet.
 	// Data objecten
-	FRISBEE.schedule = {
-	
-	};
-
-	FRISBEE.game = {
-		
-			
-	};
-
-
-	FRISBEE.ranking = {
-		
-	};
 	
 	// Controller Init, start na de DOM Ready
 	FRISBEE.controller = {
@@ -72,12 +59,12 @@ var FRISBEE = FRISBEE || {};
 	// Pages
 	FRISBEE.page = {
 		schedule: function () {
-			poolData: $$.json('https://api.leaguevine.com/v1/game_scores/?tournament_id=19389&access_token=395d9028d3',{}, function(data){
+			$$.json('https://api.leaguevine.com/v1/game_scores/?tournament_id=19389&access_token=395d9028d3',{}, function(data){
 			FRISBEE.schedule.games = data;
 			Transparency.render(qwery('[data-route=schedule.games')[0], FRISBEE.schedule.games);
-			//console.log(FRISBEE.Ranking.games);
-		})
+			//console.log(data);
 			FRISBEE.router.change();
+		     })
 		},
 
 		game: function () {
@@ -86,12 +73,12 @@ var FRISBEE = FRISBEE || {};
 		},
 
 		ranking: function () {
-			poolData: $$.json('https://api.leaguevine.com/v1/pools/?tournament_id=19389&access_token=6df342fc83',{}, function(data){
+			$$.json('https://api.leaguevine.com/v1/pools/?tournament_id=19389&access_token=6df342fc83',{}, function(data){
 			FRISBEE.ranking.pools = data;
 			Transparency.render(qwery('[data-route=ranking.pools')[0], FRISBEE.ranking.pools);
 			//console.log(FRISBEE.Ranking.pools);
-		})
 			FRISBEE.router.change();
+		})
 		}
 	}
 	// DOM ready - Start de applicatie, pas als de pagina is geladen
